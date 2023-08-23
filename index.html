@@ -22,6 +22,7 @@
                 data.motd.clean.startsWith("This server is offline.")
             ) {
                 document.querySelector(".asf").innerText = "nah man :(";
+                document.querySelector(".o").innerText = "no playaz to spyz on"
             } else {
                 document.querySelector(".asf").innerText = `yas :D\nbtw da playaz count iz ${data.players.online}`;
                 document.querySelector(".o").innerText = data.players.list.map(ag => ag.name_clean).join(", ");
@@ -29,6 +30,7 @@
         } catch (err) {
             alert("oh nurrrrr da wabstite brokey sowwwweey");
             alert("errwa: " + err);
+            console.error(err);
         }
     </script>
 </head>
