@@ -14,7 +14,7 @@
         }
         document.querySelector(".sdf").innerText = name;
         try {
-            const data = await (await fetch("https://api.mcstatus.io/v2/status/java/" + name)).json();
+            const data = await (await fetch(`https://api.mcstatus.io/v2/status/java/${name}`)).json();
             if (
                 data.version.name_raw === "§4● Offline" ||
                 data.version.name_clean === "● Offline" ||
@@ -23,7 +23,8 @@
             ) {
                 document.querySelector(".asf").innerText = "nah man :(";
             } else {
-                document.querySelector(".asf").innerText = "yas :D"
+                document.querySelector(".asf").innerText = `yas :D\nbtw da playaz count iz ${data.players.online}`;
+                document.querySelector(".o").innerText = data.players.list.map(ag => ag.name_clean).join(", ");
             }
         } catch (err) {
             alert("oh nurrrrr da wabstite brokey sowwwweey");
@@ -32,7 +33,11 @@
     </script>
 </head>
 <body>
-    <h1>da serva: <span class="sdf"></span></h1>
-    <h1>iz it olwine: <span class="asf"></span></h1>
+    <h1>da serva:</h1>
+    <h3 class="sdf" style="font-weight: 500"></h3>
+    <h1>iz it olwine:</h1>
+    <h3 class="asf" style="font-weight: 500"></span>
+    <h1>breh do ya wanna spy on peeps:</h1>
+    <p class="o"></p>
 </body>
 </html>
