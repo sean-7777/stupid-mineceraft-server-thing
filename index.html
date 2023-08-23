@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iz da serva olwine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <script type="module">
+        const name = new URLSearchParams(window.location.search).get("s");
+        if (name == null) {
+            alert("bruh u didnt give a server wtf")
+            alert("btw its like iz-da-serva-olwine.vercel.app/?s=server.com")
+            throw new Error();
+        }
+        document.querySelector(".sdf").innerText = name;
+        try {
+            const data = await (await fetch("https://api.mcstatus.io/v2/status/java/" + name)).json();
+            if (
+                data.version.name_raw === "§4● Offline" ||
+                data.version.name_clean === "● Offline" ||
+                data.motd.raw.startsWith("§4This server is offline.§") ||
+                data.motd.clean.startsWith("This server is offline.")
+            ) {
+                document.querySelector(".asf").innerText = "nah man :(";
+            } else {
+                document.querySelector(".asf").innerText = "yas :D"
+            }
+        } catch (err) {
+            alert("oh nurrrrr da wabstite brokey sowwwweey");
+            alert("errwa: " + err);
+        }
+    </script>
+</head>
+<body>
+    <h1>da serva: <span class="sdf"></span></h1>
+    <h1>iz it olwine: <span class="asf"></span></h1>
+</body>
+</html>
